@@ -12,11 +12,11 @@ import android.widget.LinearLayout;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     public static final String TAG = "StartActivity";
-    Button red;
-    Button yellow;
-    Button green;
+    Button btnRed;
+    Button btnYellow;
+    Button btnGreen;
     LinearLayout ll;
-    int bg;
+    int backgroungColor;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -24,13 +24,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         ll = (LinearLayout) findViewById(R.id.l1);
-        red = (Button) findViewById(R.id.red);
-        yellow = (Button) findViewById(R.id.yellow);
-        green = (Button) findViewById(R.id.green);
+        btnRed = (Button) findViewById(R.id.red);
+        btnYellow = (Button) findViewById(R.id.yellow);
+        btnGreen = (Button) findViewById(R.id.green);
 
-        red.setOnClickListener(this);
-        yellow.setOnClickListener(this);
-        green.setOnClickListener(this);
+        btnRed.setOnClickListener(this);
+        btnYellow.setOnClickListener(this);
+        btnGreen.setOnClickListener(this);
     }
 
 
@@ -74,16 +74,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.red:
-                bg = R.color.colorRed;
-                ll.setBackgroundResource(bg);
+                backgroungColor = R.color.colorRed;
+                ll.setBackgroundResource(backgroungColor);
                 break;
             case R.id.yellow:
-                bg = R.color.colorYellow;
-                ll.setBackgroundResource(bg);
+                backgroungColor = R.color.colorYellow;
+                ll.setBackgroundResource(backgroungColor);
                 break;
             case R.id.green:
-                bg = R.color.colorGreen;
-                ll.setBackgroundResource(bg);
+                backgroungColor = R.color.colorGreen;
+                ll.setBackgroundResource(backgroungColor);
                 break;
         }
     }
@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putInt("color", bg );
+        outState.putInt("color", backgroungColor);
         Log.d(TAG, "onSaveInstanceState");
     }
 
@@ -99,8 +99,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         if (savedInstanceState != null && savedInstanceState.containsKey("color")) {
-            bg = (int) savedInstanceState.get("color");
-            findViewById(R.id.l1).setBackgroundResource(bg);
+            backgroungColor = (int) savedInstanceState.get("color");
+            findViewById(R.id.l1).setBackgroundResource(backgroungColor);
         }
         Log.d(TAG, "onRestoreInstanceState");
     }
