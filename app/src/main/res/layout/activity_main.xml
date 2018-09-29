@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:id="@+id/l1">
+    android:id="@+id/l1"
     tools:context=".MainActivity">
 
     <Button

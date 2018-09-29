@@ -1,15 +1,13 @@
 package com.example.kev.light;
 
-import android.graphics.Color;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import static com.example.kev.light.R.color.colorYellow;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -46,7 +44,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onResume() {
         super.onResume();
         Log.d(TAG, "onResume");
-        resetUI();
     }
 
     @Override
@@ -77,19 +74,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.red:
-                ll.setBackgroundColor(Color.RED);
-                bg = R.id.red;
+                bg = R.color.colorRed;
+                ll.setBackgroundResource(bg);
                 break;
             case R.id.yellow:
-                ll.setBackgroundColor(Color.YELLOW);
-                bg = R.id.yellow;
+                bg = R.color.colorYellow;
+                ll.setBackgroundResource(bg);
                 break;
             case R.id.green:
-                ll.setBackgroundColor(Color.GREEN);
-                bg = R.id.green;
+                bg = R.color.colorGreen;
+                ll.setBackgroundResource(bg);
                 break;
-
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("color", bg );
+        Log.d(TAG, "onSaveInstanceState");
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        if (savedInstanceState != null && savedInstanceState.containsKey("color")) {
+            bg = (int) savedInstanceState.get("color");
+            findViewById(R.id.l1).setBackgroundResource(bg);
+        }
+        Log.d(TAG, "onRestoreInstanceState");
     }
 
 
